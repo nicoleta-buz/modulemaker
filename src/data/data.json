@@ -1,0 +1,55 @@
+[
+  {
+    "name": "Weight",
+    "goals": [
+      {
+        "name": "Manage my weight"
+      }
+    ],
+    "actions": [
+      {
+        "name": "Track steps",
+        "targetType": "target",
+        "metric": {
+          "threshold": 10000,
+          "metricId": "stepsTrack"
+        }
+      },
+      {
+        "name": "Track WC",
+        "targetType": "target",
+        "metric": {
+          "threshold": 10000,
+          "metricId": "wcTrack"
+        }
+      }
+    ]
+  },
+  {
+    "name": "blood",
+    "goals": [
+      {
+        "name": "reduce blood "
+      }
+    ],
+    "actions":
+      {
+        "name": "Track steps",
+        "targetType": "target",
+        "metric": {
+          "threshold": 10000,
+          "metricId": "stepsTrack"
+        }
+      },
+      {
+        "name": "Track WC",
+        "targetType": "target",
+        "metric": {
+          "threshold": 10000,
+          "metricId": "wcTrack"
+        }
+      }
+    ]
+  }
+]
+
