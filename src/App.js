@@ -1,22 +1,22 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import Module from "./module/Module";
+import './App.css';
 
 function App() {
     return (
         <Router>
-
-            <Route exact path={"/"} component={() => <div>
+            <Route exact path={"/"} component={() => <div className="container">
                 {modules.map(m =>
-                    <div><a href={"/detail"}>{m.name}</a></div>
+                    <div className="centered">Module Name: <a href={`/detail/${m.name}`}>{m.name}</a></div>
                 )}
             </div>}>
-
             </Route>
-
-            <Route path={"/detail"} component={() =>
+            <Route path={"/detail/:name"} component={({match}) =>
                 <div>
-                    <Module module={modules[0]}></Module>
+                    <Module module={modules.find(function (elem) {
+                        return elem.name === match.params.name;
+                    })}></Module>
                     <Link to={"/"}>back</Link>
                 </div>
             }/>

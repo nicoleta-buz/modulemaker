@@ -1,4 +1,6 @@
 import * as React from "react";
+import Action from "./Action";
+import Goal from "./Goal";
 
 class Module extends React.Component {
 
@@ -22,6 +24,14 @@ class Module extends React.Component {
                         ></input>
                     </label>
                 </div>
+                {this.state.actions.map(action =>
+                    <Action action={action}/>
+                )
+                }
+                {this.state.goals.map(goal =>
+                    <Goal goal={goal}/>
+                )
+                }
             </form>
         );
     }
