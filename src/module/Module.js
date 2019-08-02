@@ -4,7 +4,7 @@ class Module extends React.Component {
 
     constructor(props) {
         super(props);
-        this.state = {name: "defaultName"};
+        this.state = props.module;
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -21,7 +21,6 @@ class Module extends React.Component {
                                onChange={this.handleChange}
                         ></input>
                     </label>
-                    <h5> {this.state.name} ----</h5>
                 </div>
             </form>
         );

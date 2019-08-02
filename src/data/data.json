@@ -32,7 +32,7 @@
         "name": "reduce blood "
       }
     ],
-    "actions":
+    "actions":[
       {
         "name": "Track steps",
         "targetType": "target",
