@@ -1,0 +1,62 @@
+.wellRow {
+	display: flex;
+	flex-direction: row;
+}
+
+.wellRow > * {
+	flex: 1 1 auto;
+}
+
+.well {
+	padding: 10px 15px;
+	margin: 5px;
+	background-color: #eee;
+}
+
+.well.yellow {
+	background-color: #ebc92c;
+}
+
+.well.orange {
+	background-color: #f96930;
+}
+
+.wellItem {
+	display: block;
+}
+
+/*don't do this at home*/
+marquee{
+	font-size: 100px;
+    -webkit-animation: color-change 1s infinite;
+    -moz-animation: color-change 1s infinite;
+    -o-animation: color-change 1s infinite;
+    -ms-animation: color-change 1s infinite;
+    animation: color-change 1s infinite;
+}
+
+@-webkit-keyframes color-change {
+    0% { opacity: 0; color: red; }
+    50% { opacity: 1; color: blue; }
+    100% { opacity: 0; color: red; }
+}
+@-moz-keyframes color-change {
+    0% { opacity: 0; color: red; }
+    50% { opacity: 1; color: blue; }
+    100% { opacity: 0; color: red; }
+}
+@-ms-keyframes color-change {
+    0% { opacity: 0; color: red; }
+    50% { opacity: 1; color: blue; }
+    100% { opacity: 0; color: red; }
+}
+@-o-keyframes color-change {
+    0% { opacity: 0; color: red; }
+    50% { opacity: 1; color: blue; }
+    100% { opacity: 0; color: red; }
+}
+@keyframes color-change {
+    0% { opacity: 0; color: red; }
+    50% { opacity: 1; color: blue; }
+    100% { opacity: 0; color: red; }
+}

@@ -1,5 +1,7 @@
 import * as React from "react";
 
+import './module.css';
+
 class Action extends React.Component {
 
     constructor(props) {
@@ -19,7 +21,7 @@ class Action extends React.Component {
 
     render() {
         return (
-            <form>
+            <div className='well'>
                 <div className="form-group">
                     <label> Action Name:
                         <input name="actionName" className="form-control" type="text" value={this.state.name}
@@ -34,7 +36,7 @@ class Action extends React.Component {
                         ></input>
                     </label>
                 </div>
-            </form>
+            </div>
         );
     }
 

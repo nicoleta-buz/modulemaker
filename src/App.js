@@ -13,11 +13,12 @@ function App() {
             </div>}>
             </Route>
             <Route path={"/detail/:name"} component={({match}) =>
+
                 <div>
+                    <Link to={"/"}>back</Link>
                     <Module module={modules.find(function (elem) {
                         return elem.name === match.params.name;
                     })}></Module>
-                    <Link to={"/"}>back</Link>
                 </div>
             }/>
 
