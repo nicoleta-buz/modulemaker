@@ -20,8 +20,16 @@ function Module(props) {
         setActions(actions.map((a, i) => (i === index) ? updatedAction : a));
     }
 
+    const addGoal = () => {
+        setGoals([...goals, {name: "", targetType: "what even is this"}]);
+    }
+
+    const addAction = () => {
+        setActions([...actions, {name: ""}]);
+    }
+
     return (
-        <form>
+        <div>
             <div className="well form-group">
                 <label> Module Name:
                     <input name="moduleName" className="form-control" type="text" value={name}
@@ -38,6 +46,7 @@ function Module(props) {
                           )
                         : <span className='emptyMessage'>None 😿</span>
                     }
+                    <div><button className='add' onClick={addGoal}>Add Goal</button></div>
                 </div>
                 <div className="well pink">
                     <h4>Actions</h4>
@@ -47,15 +56,16 @@ function Module(props) {
                           )
                         : <span className='emptyMessage'>None 😿</span>
                     }
+                    <div><button className='add' onClick={addAction}>Add Action</button></div>
 
                 </div>
             </div>
 
             <div className="buttonWrapper">
-                <button className="button grey">Cancel</button>
+                {/*<button className="button grey">Cancel</button>*/}
                 <button className="button success" onClick={() => onSave({...module, name, goals, actions})}>Save</button>
             </div>
-        </form>
+        </div>
     );
 }
 

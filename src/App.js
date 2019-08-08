@@ -67,6 +67,11 @@ const hardcodedModules =
         }
     ];
 
+/*TODO generally: add keys to the maps; since this is all fake and we have no `id`s for anything there's no real unique keys
+would probably fix that when writing real json*/
+
+/*TODO generally: clean up the `form` elements, causing weird reloads. should probably be minimal, 
+and have some logic to prevent form submission*/
 function App(props) {
 
     const [modules, setModules] = React.useState(hardcodedModules);
