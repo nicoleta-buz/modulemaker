@@ -32,15 +32,22 @@ function Module(props) {
             <div className='wellRow'>
                 <div className="well purple">
                     <h4>Goals</h4>
-                    {goals.map((goal, index) =>
-                        <Goal goal={goal} onUpdate={(updated) => updateGoal(updated, index)} className='wellItem'/>
-                    )}
+                    {goals.length > 0
+                        ? goals.map((goal, index) =>
+                            <Goal goal={goal} onUpdate={(updated) => updateGoal(updated, index)} className='wellItem'/>
+                          )
+                        : <span className='emptyMessage'>None 😿</span>
+                    }
                 </div>
                 <div className="well pink">
                     <h4>Actions</h4>
-                    {actions.map((action, index) =>
-                        <Action action={action} onUpdate={(updated) => updateAction(updated, index)} className='wellItem'/>
-                    )}
+                    {actions.length > 0
+                        ? actions.map((action, index) =>
+                            <Action action={action} onUpdate={(updated) => updateAction(updated, index)} className='wellItem'/>
+                          )
+                        : <span className='emptyMessage'>None 😿</span>
+                    }
+
                 </div>
             </div>
 

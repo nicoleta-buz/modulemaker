@@ -58,6 +58,12 @@ const hardcodedModules =
                     }
                 }
             ]
+        },
+        {
+            "id": 3,
+            "name": "unnamed",
+            "goals": [],
+            "actions": []
         }
     ];
 
@@ -67,6 +73,10 @@ function App(props) {
     const updateModule = (updatedModule, index) => {
         //updating arrays _must_ update the reference; probably better ways than this but :shrug: cba installing lodash
         setModules(modules.map((m, i) => (i === index) ? updatedModule : m));
+    }
+
+    const add = () => {
+        setModules([...modules, {id: modules.length + 1, name: "Unnamed Module", goals: [], actions: []}])
     }
 
     return (
@@ -85,21 +95,23 @@ function App(props) {
                                 </div>
                                 <div className="moduleBody">
                                     <h5>Goals</h5>
-                                    <ol>
-                                        {m.goals.map(goal => <li>{goal.name}</li>)}
-                                    </ol>
+                                    {m.goals.length > 0
+                                        ? (<ol>{m.goals.map(goal => <li>{goal.name}</li>)}</ol>)
+                                        : (<span className='emptyMessage'>None 😿</span>)
+                                    }
                                 </div>
                                 <div className="moduleBody">
                                     <h5>Actions</h5>
-                                    <ol>
-                                        {m.actions.map(action => <li>{action.name}</li>)}
-                                    </ol>
+                                    {m.actions.length > 0
+                                        ? <ol>{m.actions.map(action => <li>{action.name}</li>)}</ol>
+                                        : (<span className='emptyMessage'>None 😿</span>)
+                                    }
                                 </div>
                             </div>
                         )}
 
                         <div className="addWrapper">
-                            <button className='add'>Add new</button>
+                            <button className='add' onClick={add}>Add new</button>
                         </div>
                     </div>
                 }/>
