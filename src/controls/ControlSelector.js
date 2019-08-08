@@ -4,7 +4,7 @@ import './styles.css';
 const availableMetrics = [
     {id: "8bXN7", name: "Steps"},
     {id: "e5CEk", name: "Blood Sugar"},
-    {id: "AFQ12", name: "Weight"}
+    {id: "AFQ12", name: "BMI"}
 ];
 const availableMetricLabels = availableMetrics.map(metric => metric.name);
 
@@ -33,14 +33,6 @@ const availableControls = [
         ]
     }
 ];
-
-/*const ThresholdInput = props => {
-    return <div className='wrapper'>
-        Min {props.label}: <input></input>
-        Max {props.label}: <input></input>
-    </div>
-
-}*/
 
 const OptionInput = props => (
     <div className='optionInput'>
@@ -144,6 +136,7 @@ class ControlList extends Component {
             </div>
             {this.state.selectedComponentIndex !== null
                 ? <AdvancedView
+                    key={this.state.selectedComponentIndex /*so that state reset if key changes*/}
                     control={availableControls[this.state.selectedComponentIndex]}
                     onSave={(config) => this.props.onSave(
                         availableControls[this.state.selectedComponentIndex].name,
@@ -157,6 +150,7 @@ class ControlList extends Component {
 class ControlSelector extends Component {
     constructor(props) {
         super(props)
+        //TODO move this state up to Action so it can decide whether to show Add/Edit UI, etc
         this.state = {
             listOpen: false
         }
