@@ -1,30 +1,20 @@
 import * as React from "react";
 
-class Goal extends React.Component {
+function Goal(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = props.goal;
-        this.handleNameChange = this.handleNameChange.bind(this);
-    }
+    const {goal, onUpdate} = props;
 
-    handleNameChange(event) {
-        this.setState({name: event.target.value});
-    }
-
-    render() {
-        return (
-            <form>
-                <div className="form-group">
-                    <label> Goal Name:
-                        <input name="goalName" className="form-control" type="text" value={this.state.name}
-                               onChange={this.handleNameChange}
-                        ></input>
-                    </label>
-                </div>
-            </form>
-        );
-    }
+    return (
+        <form>
+            <div className="form-group">
+                <label> Goal Name:
+                    <input name="goalName" className="form-control" type="text" value={goal.name}
+                           onChange={(e) => onUpdate({...goal, name: e.target.value})}
+                    ></input>
+                </label>
+            </div>
+        </form>
+    );
 
 }
 

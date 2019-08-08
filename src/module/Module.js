@@ -4,49 +4,71 @@ import Goal from "./Goal";
 
 import './module.css';
 
-class Module extends React.Component {
+function Module(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = props.module;
-        this.handleChange = this.handleChange.bind(this);
+    const {module, onSave} = props;
+
+    const [name, setName] = React.useState(module.name);
+    const [goals, setGoals] = React.useState(module.goals);
+    const [actions, setActions] = React.useState(module.actions);
+
+    const updateGoal = (updatedGoal, index) => {
+        setGoals(goals.map((g, i) => (i === index) ? updatedGoal : g));
     }
 
-    handleChange(event) {
-        this.setState({name: event.target.value});
+    const updateAction = (updatedAction, index) => {
+        setActions(actions.map((a, i) => (i === index) ? updatedAction : a));
     }
 
-    render() {
-        return (
-            <form>
+    const addGoal = () => {
+        setGoals([...goals, {name: ""}]);
+    }
 
-                <marquee>Module maker!!</marquee>
+    const addAction = () => {
+        setActions([...actions, {id: actions.length + 1, name: "", targetType: "what even is this"}]);
+    }
 
-                <div className="well form-group">
-                    <label> Module Name:
-                        <input name="moduleName" className="form-control" type="text" value={this.state.name}
-                               onChange={this.handleChange}
-                        ></input>
-                    </label>
+    const emptyMessage = (<span className='emptyMessage'>None 😿</span>);
+
+    return (
+        <div>
+            <div className="well form-group">
+                <label> Module Name:
+                    <input name="moduleName" className="form-control" type="text" value={name}
+                           onChange={(e) => setName(e.target.value)}
+                    ></input>
+                </label>
+            </div>
+            <div className='wellRow'>
+                <div className="well purple">
+                    <h4>Goals</h4>
+                    {goals.length > 0
+                        ? goals.map((goal, index) =>
+                            <Goal goal={goal} onUpdate={(updated) => updateGoal(updated, index)} className='wellItem'/>
+                          )
+                        : emptyMessage
+                    }
+                    <div><button className='add' onClick={addGoal}>Add Goal</button></div>
                 </div>
-                <div className='wellRow'>
-                    <div className="well yellow">
-                        <h4>Actions</h4>
-                        {this.state.actions.map(action =>
-                            <Action action={action} className='wellItem'/>
-                        )}
-                    </div>
-                    <div className="well orange">
-                        <h4>Goals</h4>
-                        {this.state.goals.map(goal =>
-                            <Goal goal={goal} className='wellItem'/>
-                        )}
-                    </div>
-                </div>
-            </form>
-        );
-    }
+                <div className="well pink">
+                    <h4>Actions</h4>
+                    {actions.length > 0
+                        ? actions.map((action, index) =>
+                            <Action action={action} onUpdate={(updated) => updateAction(updated, index)} className='wellItem'/>
+                          )
+                        : emptyMessage
+                    }
+                    <div><button className='add' onClick={addAction}>Add Action</button></div>
 
+                </div>
+            </div>
+
+            <div className="buttonWrapper">
+                {/*<button className="button grey">Cancel</button>*/}
+                <button className="button success" onClick={() => onSave({...module, name, goals, actions})}>Save</button>
+            </div>
+        </div>
+    );
 }
 
 export default Module;

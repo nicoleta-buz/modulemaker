@@ -1,44 +1,59 @@
 import * as React from "react";
+import ControlSelector from '../controls/ControlSelector'
 
 import './module.css';
 
-class Action extends React.Component {
+function Action(props) {
 
-    constructor(props) {
-        super(props);
-        this.state = props.action;
-        this.handleActionNameChange = this.handleActionNameChange.bind(this);
-        this.handleTargetTypeChange = this.handleTargetTypeChange.bind(this);
+    const {action, onUpdate} = props;
+
+
+    const onNameChange = (event) => {
+        onUpdate({...action, name: event.target.value});
     }
 
-    handleActionNameChange(event) {
-        this.setState({name: event.target.value});
+    const onTypeChange = (event) => {
+        onUpdate({...action, targetType: event.target.value});
     }
 
-    handleTargetTypeChange(event) {
-        this.setState({targetType: event.target.value});
-    }
+    //TODO move state higher up tree, so can reuse etc
+    const [selectedControlName, setSelectedControlName] = React.useState(null);
+    const [config, setConfig] = React.useState(null);
 
-    render() {
-        return (
-            <div className='well'>
-                <div className="form-group">
-                    <label> Action Name:
-                        <input name="actionName" className="form-control" type="text" value={this.state.name}
-                               onChange={this.handleActionNameChange}
-                        ></input>
-                    </label>
-                </div>
-                <div className="form-group">
-                    <label> Target Type:
-                        <input name="targetType" className="form-control" type="text" value={this.state.targetType}
-                               onChange={this.handleTargetTypeChange}
-                        ></input>
-                    </label>
-                </div>
+    return (
+        <div className='well'>
+            <div className="form-group">
+                <label> Action Name:
+                    <input name="actionName" className="form-control" type="text" value={action.name}
+                           onChange={onNameChange}
+                    ></input>
+                </label>
             </div>
-        );
-    }
+            <div className="form-group">
+                <label> Target Type:
+                    <input name="targetType" className="form-control" type="text" value={action.targetType}
+                           onChange={onTypeChange}
+                    ></input>
+                </label>
+            </div>
+
+            {selectedControlName && config && <div>
+
+                <h4>Control: {selectedControlName}</h4>
+
+                {Object.keys(config).map((key) =>
+                    (<p key={key}>{key}: {config[key]}</p>))
+                }
+
+            </div>}
+            {/*TODO pass in initial config to allow editing, etc*/}
+            <ControlSelector onSave={(name, config) => {
+                setSelectedControlName(name);
+                setConfig(config);
+            }}/>
+
+        </div>
+    );
 
 }
 
