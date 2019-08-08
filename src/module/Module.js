@@ -21,12 +21,14 @@ function Module(props) {
     }
 
     const addGoal = () => {
-        setGoals([...goals, {name: "", targetType: "what even is this"}]);
+        setGoals([...goals, {name: ""}]);
     }
 
     const addAction = () => {
-        setActions([...actions, {name: ""}]);
+        setActions([...actions, {id: actions.length + 1, name: "", targetType: "what even is this"}]);
     }
+
+    const emptyMessage = (<span className='emptyMessage'>None 😿</span>);
 
     return (
         <div>
@@ -44,7 +46,7 @@ function Module(props) {
                         ? goals.map((goal, index) =>
                             <Goal goal={goal} onUpdate={(updated) => updateGoal(updated, index)} className='wellItem'/>
                           )
-                        : <span className='emptyMessage'>None 😿</span>
+                        : emptyMessage
                     }
                     <div><button className='add' onClick={addGoal}>Add Goal</button></div>
                 </div>
@@ -54,7 +56,7 @@ function Module(props) {
                         ? actions.map((action, index) =>
                             <Action action={action} onUpdate={(updated) => updateAction(updated, index)} className='wellItem'/>
                           )
-                        : <span className='emptyMessage'>None 😿</span>
+                        : emptyMessage
                     }
                     <div><button className='add' onClick={addAction}>Add Action</button></div>
 

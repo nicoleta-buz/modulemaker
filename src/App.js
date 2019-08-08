@@ -15,6 +15,7 @@ const hardcodedModules =
             ],
             "actions": [
                 {
+                    "id": 1,
                     "name": "Track steps",
                     "targetType": "target",
                     "metric": {
@@ -23,6 +24,7 @@ const hardcodedModules =
                     }
                 },
                 {
+                    "id": 2,
                     "name": "Track WC",
                     "targetType": "target",
                     "metric": {
@@ -42,6 +44,7 @@ const hardcodedModules =
             ],
             "actions": [
                 {
+                    "id": 3,
                     "name": "Track steps",
                     "targetType": "target",
                     "metric": {
@@ -50,6 +53,7 @@ const hardcodedModules =
                     }
                 },
                 {
+                    "id": 4,
                     "name": "Track WC",
                     "targetType": "target",
                     "metric": {
@@ -84,6 +88,8 @@ function App(props) {
         setModules([...modules, {id: modules.length + 1, name: "Unnamed Module", goals: [], actions: []}])
     }
 
+    const emptyMessage = (<span className='emptyMessage'>None 😿</span>);
+
     return (
         <Router>
 
@@ -96,20 +102,20 @@ function App(props) {
                             <div className="module">
                                 <div className="moduleTitle">
                                     <h4>{m.name}</h4>
-                                    <Link to={`/detail/${m.id}`}>Edit</Link>
+                                    <Link to={`/modules/${m.id}/detail`}>Edit</Link>
                                 </div>
                                 <div className="moduleBody">
                                     <h5>Goals</h5>
                                     {m.goals.length > 0
                                         ? (<ol>{m.goals.map(goal => <li>{goal.name}</li>)}</ol>)
-                                        : (<span className='emptyMessage'>None 😿</span>)
+                                        : emptyMessage
                                     }
                                 </div>
                                 <div className="moduleBody">
                                     <h5>Actions</h5>
                                     {m.actions.length > 0
                                         ? <ol>{m.actions.map(action => <li>{action.name}</li>)}</ol>
-                                        : (<span className='emptyMessage'>None 😿</span>)
+                                        : emptyMessage
                                     }
                                 </div>
                             </div>
@@ -120,9 +126,9 @@ function App(props) {
                         </div>
                     </div>
                 }/>
-                <Route path={"/detail/:id"} component={({match}) =>
+                <Route path={"/modules/:id/detail"} component={({match}) =>
                     <div>
-                        <Link to={"/"}>back</Link>
+                        <Link to={"/"}>&#8249; Back</Link>
 
                         <Module
                             module={modules.find(elem => (elem.id === parseInt(match.params.id)))}
