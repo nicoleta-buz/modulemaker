@@ -66,8 +66,6 @@ function App(props) {
     const [modules, setModules] = React.useState(hardcodedModules);
     const updateModule = (updatedModule, index) => {
         //updating arrays _must_ update the reference; probably better ways than this but :shrug: cba installing lodash
-
-        console.log('updating? ', updatedModule, index);
         setModules(modules.map((m, i) => (i === index) ? updatedModule : m));
     }
 
@@ -80,12 +78,32 @@ function App(props) {
                 <Route exact path={"/"} component={() =>
                     <div>
                         {modules.map(m =>
-                            <div className="centered">Module Name: <Link to={`/detail/${m.id}`}>{m.name}</Link></div>
+                            <div className="module">
+                                <div className="moduleTitle">
+                                    <h4>{m.name}</h4>
+                                    <Link to={`/detail/${m.id}`}>Edit</Link>
+                                </div>
+                                <div className="moduleBody">
+                                    <h5>Goals</h5>
+                                    <ol>
+                                        {m.goals.map(goal => <li>{goal.name}</li>)}
+                                    </ol>
+                                </div>
+                                <div className="moduleBody">
+                                    <h5>Actions</h5>
+                                    <ol>
+                                        {m.actions.map(action => <li>{action.name}</li>)}
+                                    </ol>
+                                </div>
+                            </div>
                         )}
+
+                        <div className="addWrapper">
+                            <button className='add'>Add new</button>
+                        </div>
                     </div>
                 }/>
                 <Route path={"/detail/:id"} component={({match}) =>
-
                     <div>
                         <Link to={"/"}>back</Link>
 

@@ -1,3 +1,8 @@
+.container {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
 .App {
     text-align: center;
 }
@@ -25,6 +30,43 @@
 
 .centered {
     text-align: center
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.addWrapper {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.module {
+    background-color: #eee;
+    border-radius: 5px;
+    margin: 5px;
+    padding: 20px;
+}
+
+.moduleTitle {
+    display: flex;
+    justify-content: space-between;
+}
+
+.moduleBody {
+    margin: 15px;
+    padding: 15px;
+    border-radius: 9px;
+    background-color: #fafafa;
+}
+
+.moduleBody ol {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+
+.moduleTitle h4 {
+    margin-bottom: 0;
 }
 
 @keyframes App-logo-spin {
